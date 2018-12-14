@@ -8,7 +8,8 @@ import mysql.connector
 import numpy as np
 
 # 1. import data:
-data = np.load('labelNum_to_labelName.npy')
+#data = np.load('labelNum_to_labelName.npy')
+data = np.load('label_plant_disease_severity.npy')
 data = data.tolist()
 
 database_name = 'PlantDiseaseLibrary'
@@ -31,14 +32,14 @@ for key in data.keys():
     health_status = 0
     disease_name = None
     severity = None
-    if data[key][1] != 'healthy':
+    if data[key][1] != '健康':
         health_status = 1
         disease_name = data[key][1]
         # Determine severity:
         if len(data[key]) == 3:
-            if data[key][-1] == 'general':
+            if data[key][-1] == '一般':
                 severity = 0
-            elif data[key][-1] == 'serious':
+            elif data[key][-1] == '严重':
                 severity = 1
 
     piece = {
